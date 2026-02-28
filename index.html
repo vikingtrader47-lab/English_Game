@@ -2461,7 +2461,6 @@ const WORDS = {
     {en: 'stupid', pt: 'estúpido'},
     {en: 'stupidity', pt: 'estupidez'},
     {en: 'stupidly', pt: 'estupidamente'},
-    {en: 'rich', pt: 'rico'},
     {en: 'riches', pt: 'riquezas'},
     {en: 'enrich', pt: 'enriquecer'},
     {en: 'poor', pt: 'pobre'},
@@ -2499,10 +2498,8 @@ const WORDS = {
     {en: 'thicken', pt: 'engrossar'},
     {en: 'thin', pt: 'fino'},
     {en: 'thinness', pt: 'finura'},
-    {en: 'thin', pt: 'afinar'},
-    {en: 'rich', pt: 'rico'},
     {en: 'wealth', pt: 'riqueza'},
-    {en: 'wealthy', pt: 'rico'},
+    {en: 'wealthy', pt: 'abastado'},
     {en: 'happy', pt: 'feliz'},
     {en: 'joy', pt: 'alegria'},
     {en: 'joyful', pt: 'alegre'},
@@ -2561,9 +2558,7 @@ const WORDS = {
     {en: 'roar', pt: 'rugido'},
     {en: 'roar', pt: 'rugir'},
     {en: 'quiet', pt: 'silencioso'},
-    {en: 'hush', pt: 'silêncio'},
     {en: 'hush', pt: 'silenciar'},
-    {en: 'rich', pt: 'rico'},
     {en: 'gold', pt: 'ouro'},
     {en: 'golden', pt: 'dourado'},
     {en: 'poor', pt: 'pobre'},
@@ -4213,11 +4208,11 @@ const WORDS = {
             const timeLabel = gameState.initialTime === 180 ? '3 minutos' : '5 minutos';
             
             let html = `
-                <div class="screen active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); align-items: center; justify-content: center; padding: 40px;">
-                    <div style="background: white; border-radius: 30px; padding: 40px; max-width: 600px; width: 100%;">
-                        <h1 style="text-align: center; margin-bottom: 30px;">🎉 FIM DE JOGO!</h1>
+                <div class="screen active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); align-items: center; justify-content: center; padding: 20px;">
+                    <div style="background: white; border-radius: 30px; padding: 25px; max-width: 600px; width: 100%;">
+                        <h1 style="text-align: center; margin-bottom: 20px;">🎉 FIM DE JOGO!</h1>
                         
-                        <div style="text-align: center; margin-bottom: 30px;">
+                        <div style="text-align: center; margin-bottom: 20px;">
                             <div style="font-size: 48px; font-weight: 900; color: #667eea;">${gameState.score}</div>
                             <div style="font-size: 20px; color: #666;">pontos</div>
                         </div>
@@ -4226,7 +4221,7 @@ const WORDS = {
             if (position && position <= 3) {
                 const medals = ['🥇', '🥈', '🥉'];
                 html += `
-                    <div style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); padding: 20px; border-radius: 20px; margin-bottom: 30px; text-align: center;">
+                    <div style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); padding: 15px; border-radius: 20px; margin-bottom: 20px; text-align: center;">
                         <div style="font-size: 48px;">${medals[position - 1]}</div>
                         <div style="font-size: 24px; font-weight: bold;">PARABÉNS!</div>
                         <div style="font-size: 18px; margin-top: 8px;">Você está em #${position}</div>
@@ -4238,8 +4233,8 @@ const WORDS = {
 
             if (gameState.startedAtB0 && rankings.length > 0) {
                 html += `
-                    <h2 style="margin-bottom: 20px;">🏆 RANKING ${timeLabel} | Nível: B0</h2>
-                    <div style="background: #f8f9fa; border-radius: 15px; padding: 20px;">
+                    <h2 style="margin-bottom: 15px;">🏆 RANKING ${timeLabel} | Nível: B0</h2>
+                    <div style="background: #f8f9fa; border-radius: 15px; padding: 15px;">
                 `;
 
                 rankings.forEach((entry, index) => {
@@ -4248,7 +4243,7 @@ const WORDS = {
                     const highlight = isCurrentPlayer ? 'background: #e3f2fd; font-weight: bold;' : '';
                     
                     html += `
-                        <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #ddd; ${highlight}">
+                        <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; ${highlight}">
                             <span>${medal} ${index + 1}. ${entry.name}</span>
                             <span>${entry.score} pts${isCurrentPlayer ? ' ⭐' : ''}</span>
                         </div>
@@ -4265,7 +4260,7 @@ const WORDS = {
             }
 
             html += `
-                        <div style="margin-top: 30px; width: 100%; display: flex; flex-direction: column; gap: 15px;">
+                        <div style="margin-top: 20px; width: 100%; display: flex; flex-direction: column; gap: 10px;">
                             <button class="mode-button mode-progressive" onclick="location.reload()" style="width: 100%;">
                                 🔄 JOGAR NOVAMENTE
                             </button>
@@ -4842,7 +4837,7 @@ const WORDS = {
         const PRONUNCIATION_FIXES = {
             // Palavras de 3 letras que podem ser lidas como siglas
             'ant': 'annt',
-            'arm': 'ahrm', 
+            'arm': 'ahrrm', 
             'art': 'ahrt',
             'add': 'addd',
             'age': 'ayge',
