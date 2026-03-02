@@ -4921,20 +4921,21 @@ const WORDS = {
         // ============================================
         
         const COMBO_MILESTONES = {
-            10: { msg: "Good 10!", time: 20, points: 10, effect: "normal" },
-            20: { msg: "Great 20!", time: 25, points: 20, effect: "normal" },
-            30: { msg: "Amazing 30!", time: 30, points: 30, effect: "normal" },
-            40: { msg: "Incredible 40!", time: 35, points: 40, effect: "shake" },
-            50: { msg: "Legendary 50!", time: 40, points: 50, effect: "epic" },
-            60: { msg: "Fantastic 60!", time: 45, points: 60, effect: "normal" },
-            75: { msg: "Master in English 75!", time: 50, points: 100, effect: "epic" },
-            100: { msg: "You are Perfect 100!", time: 60, points: 200, effect: "epic" },
-            125: { msg: "Unstoppable 125!", time: 60, points: 250, effect: "normal" },
-            150: { msg: "Godlike 150!", time: 60, points: 300, effect: "normal" },
-            175: { msg: "Immortal 175!", time: 60, points: 350, effect: "epic" },
-            200: { msg: "Supreme Master 200!", time: 90, points: 500, effect: "epic" },
-            230: { msg: "LEGENDARY MASTER 230!", time: 150, points: 750, effect: "epic" },
-            255: { msg: "ENGLISH GOD 255!", time: 0, points: 2000, effect: "worldend" }
+            5: { msg: "Not a Baby!", time: 15, points: 20, effect: "normal" },
+            10: { msg: "Climber!", time: 20, points: 10, effect: "normal" },
+            20: { msg: "Teacher!", time: 25, points: 20, effect: "normal" },
+            30: { msg: "Professional!", time: 30, points: 30, effect: "normal" },
+            40: { msg: "Expert!", time: 35, points: 40, effect: "shake" },
+            50: { msg: "English Warrior!", time: 40, points: 50, effect: "epic" },
+            60: { msg: "English Gladiator!", time: 45, points: 60, effect: "normal" },
+            75: { msg: "English Icon!", time: 50, points: 100, effect: "epic" },
+            100: { msg: "Master in English!", time: 60, points: 200, effect: "epic" },
+            125: { msg: "King of English!", time: 60, points: 250, effect: "normal" },
+            150: { msg: "English Titan!", time: 60, points: 300, effect: "normal" },
+            175: { msg: "Immortal!", time: 60, points: 350, effect: "epic" },
+            200: { msg: "Supreme Master!", time: 90, points: 500, effect: "epic" },
+            230: { msg: "Legendary Master!", time: 150, points: 750, effect: "epic" },
+            255: { msg: "English God!", time: 0, points: 2000, effect: "worldend" }
         };
 
         // ============================================
@@ -4942,32 +4943,35 @@ const WORDS = {
         // ============================================
         
         function checkComboMilestone() {
-            // TESTE: Só celebra no 5º acerto
-            if (gameState.comboCount === 5) {
-                console.log('🎉 COMBO 5 ATINGIDO!');
-                showCombo5Celebration();
+            const milestone = COMBO_MILESTONES[gameState.comboCount];
+            if (milestone) {
+                console.log(`🎉 COMBO ${gameState.comboCount} ATINGIDO!`);
+                showComboNotification(milestone);
             }
         }
 
-        function showCombo5Celebration() {
-            console.log('🎊 Iniciando celebração COMBO 5!');
+        function showComboNotification(milestone) {
+            console.log(`🎊 Celebrando: ${milestone.msg}`);
             
             // 1. BÔNUS
-            gameState.score += 20;
-            gameState.currentTime += 15;
+            gameState.score += milestone.points;
+            gameState.currentTime += milestone.time;
             updateDisplay();
             
-            // 2. NOTIFICAÇÃO INLINE (não bloqueia o jogo!)
-            showInlineComboNotification('🔥 GOOD 5!');
+            // 2. NOTIFICAÇÃO INLINE
+            showInlineComboNotification(`🔥 ${milestone.msg}`);
             
-            // 3. TELA TREME (leve)
-            document.body.style.animation = 'shake 0.3s';
-            setTimeout(() => {
-                document.body.style.animation = '';
-            }, 300);
+            // 3. EFEITOS VISUAIS
+            if (milestone.effect === 'shake' || milestone.effect === 'epic') {
+                document.body.style.animation = 'shake 0.3s';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 300);
+            }
             
-            // 4. CONFETE (menos, mais discreto)
-            createConfetti(15); // Metade do confete
+            // 4. CONFETE
+            const confettiAmount = milestone.effect === 'epic' ? 30 : 15;
+            createConfetti(confettiAmount);
         }
 
         function showInlineComboNotification(text) {
